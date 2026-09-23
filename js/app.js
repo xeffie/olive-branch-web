@@ -1,15 +1,32 @@
 const API_URL = "https://olive-branch-api-dev.onrender.com/api/organizations";
 
-fetch(API_URL)
-    .then(response => response.json())
-    .then(data => {
-    renderOrganizations(data);
-    })
-    .catch(error => {
-        console.error("Failed to fetch organizations:", error);
-    });
+const filterButtons = document.querySelectorAll("#filters button");
 
-    function renderOrganizations(organizations) {
+filterButtons.forEach(button => {
+    button.addEventListener("click", () => {
+        const category = button.dataset.category;
+        fetchOrganizations(category);
+    });
+});
+
+function fetchOrganizations(category = "ALL") {
+    let url = API_URL;
+
+    if (category !== "ALL") {
+        url += `?category=${category}`;
+    }
+
+    fetch(url)
+        .then(response => response.json())
+        .then(data => {
+            renderOrganizations(data);
+        })
+        .catch(error => {
+            console.error("Failed to fetch organizations:", error);
+        });
+}
+
+function renderOrganizations(organizations) {
     const container = document.getElementById("organizations");
 
     container.innerHTML = "";
@@ -34,3 +51,5 @@ fetch(API_URL)
         container.appendChild(card);
     });
 }
+
+fetchOrganizations();
