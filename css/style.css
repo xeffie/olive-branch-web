@@ -1,0 +1,56 @@
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #f5f5f5;
+    color: #222;
+}
+
+header {
+    padding: 2rem;
+    text-align: center;
+    background: white;
+}
+
+#filters {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    justify-content: center;
+    padding: 1rem;
+}
+
+#filters button {
+    padding: 0.6rem 1rem;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    background: white;
+    cursor: pointer;
+}
+
+#filters button:hover {
+    background: #eeeeee;
+}
+
+#organizations {
+    display: grid;
+    gap: 1rem;
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 1rem;
+}
+
+#organizations article {
+    background: white;
+    padding: 1.5rem;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+#organizations article h2 {
+    margin-top: 0;
+}
+
+#organizations article a {
+    display: inline-block;
+    margin-top: 0.5rem;
+}
