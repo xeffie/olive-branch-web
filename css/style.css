@@ -1,0 +1,221 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: #f6f4ee;
+    color: #252820;
+    line-height: 1.6;
+}
+
+/* HEADER */
+
+header {
+    position: relative;
+    overflow: hidden;
+
+    background:
+        linear-gradient(
+            135deg,
+            #303c2a 0%,
+            #46563b 55%,
+            #5c6a4d 100%
+        );
+
+    color: white;
+    text-align: center;
+
+    padding: 5rem 1.5rem 4.5rem;
+}
+
+/* Soft decorative circle */
+header::before {
+    content: "";
+    position: absolute;
+
+    width: 280px;
+    height: 280px;
+
+    top: -150px;
+    right: 12%;
+
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.04);
+}
+
+/* Decorative line */
+header::after {
+    content: "";
+    display: block;
+
+    width: 50px;
+    height: 3px;
+
+    margin: 1.5rem auto 0;
+
+    background-color: #c8d0b7;
+    border-radius: 999px;
+}
+
+header h1 {
+    position: relative;
+
+    margin: 0;
+
+    font-size: clamp(2.8rem, 5vw, 4.2rem);
+    font-weight: 700;
+    letter-spacing: -0.04em;
+}
+
+header p {
+    position: relative;
+
+    margin: 0.8rem 0 0;
+
+    font-size: 1.1rem;
+    font-weight: 400;
+
+    color: #e3e8dc;
+    letter-spacing: 0.03em;
+}
+
+.eyebrow {
+    display: block;
+    margin-bottom: 0.8rem;
+
+    font-size: 0.7rem;
+    font-weight: 700;
+
+    letter-spacing: 0.18em;
+    color: #c8d0b7;
+}
+
+/* FILTERS */
+
+#filters {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.75rem;
+
+    max-width: 1000px;
+    margin: 2rem auto;
+    padding: 0 1rem;
+}
+
+#filters button {
+    border: 1px solid #7e8b70;
+    background-color: transparent;
+    color: #3f4a35;
+
+    padding: 0.65rem 1.1rem;
+    border-radius: 999px;
+
+    font-size: 0.95rem;
+    cursor: pointer;
+
+    transition: all 0.2s ease;
+}
+
+#filters button:hover {
+    background-color: #3f4a35;
+    color: white;
+}
+
+/* ORGANIZATION GRID */
+
+#organizations {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 1.5rem 4rem;
+
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+}
+
+/* CARDS */
+
+#organizations article {
+    background-color: white;
+
+    padding: 1.75rem;
+
+    border-radius: 14px;
+    border: 1px solid #e2dfd6;
+
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.05);
+
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+#organizations article:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+}
+
+#organizations article h2 {
+    margin: 0 0 0.75rem;
+    color: #30382a;
+    font-size: 1.4rem;
+}
+
+#organizations article p {
+    margin: 0.5rem 0;
+}
+
+/* CATEGORY */
+
+#organizations article p:nth-of-type(2) {
+    display: inline-block;
+
+    margin-top: 1rem;
+
+    padding: 0.3rem 0.7rem;
+
+    border-radius: 999px;
+
+    background-color: #e8ecdf;
+    color: #536046;
+
+    font-size: 0.75rem;
+    font-weight: bold;
+    letter-spacing: 0.05em;
+}
+
+/* LINK */
+
+#organizations article a {
+    display: block;
+    width: fit-content;
+
+    margin-top: 1.2rem;
+
+    color: #536046;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+#organizations article a:hover {
+    text-decoration: underline;
+}
+
+/* RESPONSIVE */
+
+@media (max-width: 700px) {
+    header {
+        padding: 3rem 1rem 2.5rem;
+    }
+
+    header h1 {
+        font-size: 2.3rem;
+    }
+
+    #organizations {
+        grid-template-columns: 1fr;
+    }
+}
