@@ -1,7 +1,7 @@
 const { test, expect } = require('@playwright/test');
 
 test('should display Olive Branch heading', async ({ page }) => {
-    await page.goto('http://127.0.0.1:5500');
+    await page.goto('/');
 
     await expect(
         page.getByRole('heading', { name: 'Olive Branch' })
@@ -9,7 +9,7 @@ test('should display Olive Branch heading', async ({ page }) => {
 });
 
 test('should filter organizations by category', async ({ page }) => {
-    await page.goto('http://127.0.0.1:5500');
+    await page.goto('/');
 
     await expect(
         page.locator('#organizations article')
@@ -33,7 +33,7 @@ test('should filter organizations by category', async ({ page }) => {
 });
 
 test('should display medical organizations', async ({ page }) => {
-    await page.goto('http://127.0.0.1:5500');
+    await page.goto('/');
 
     await expect(
         page.locator('#organizations article')

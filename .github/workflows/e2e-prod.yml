@@ -1,0 +1,51 @@
+name: Production E2E Tests
+
+on:
+    workflow_run:
+        workflows:
+            - Deploy PROD
+        types:
+            - completed
+
+jobs:
+    e2e-prod:
+        if: ${{ github.event.workflow_run.conclusion == 'success' }}
+        runs-on: ubuntu-latest
+
+        steps:
+            - name: Checkout code
+              uses: actions/checkout@v7
+              with:
+                  ref: main
+
+            - name: Set up Node
+              uses: actions/setup-node@v4
+              with:
+                  node-version: 22
+                  cache: npm
+
+            - name: Install dependencies
+              run: npm ci
+
+            - name: Install Playwright browsers
+              run: npx playwright install --with-deps
+
+            - name: Wake PROD backend
+              run: |
+                  for i in {1..12}; do
+                  if curl --fail --silent https://olive-branch-api-prod.onrender.com/api/organizations > /dev/null; then
+                      echo "PROD backend is ready."
+                      exit 0
+                  fi  
+
+                  echo "Waiting for PROD backend ..."
+                  sleep 5
+                  done
+
+                  echo "PROD backend did not respond in time."
+                  exit 1
+
+            - name: Run production E2E tests
+              run: npx playwright test --project=chromium
+              env:
+                BASE_URL: https://olive-branch-web-prod.onrender.com
