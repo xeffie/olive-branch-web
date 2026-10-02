@@ -30,6 +30,21 @@ jobs:
           python3 -m http.server 5500 &
           sleep 2
 
+      - name: Wake DEV backend
+        run: |
+          for i in {1..12}; do
+          if curl --fail --silent https://olive-branch-api-dev.onrender.com/api/organizations > /dev/null; then
+           echo "DEV backend is ready."
+           exit 0
+          fi  
+
+           echo "Waiting for DEV backend ..."
+           sleep 5
+          done
+
+          echo "DEV backend did not respond in time."
+          exit 1
+
       - name: Run end-to-end tests
         run: npx playwright test
 

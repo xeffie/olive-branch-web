@@ -1,4 +1,8 @@
-const API_URL = "https://olive-branch-api-dev.onrender.com/api/organizations";
+const isProduction = window.location.hostname === "olive-branch-web-prod.onrender.com";
+
+const API_URL = isProduction
+    ? "https://olive-branch-api-prod.onrender.com/api/organizations"
+    : "https://olive-branch-api-dev.onrender.com/api/organizations";
 
 const filterButtons = document.querySelectorAll("#filters button");
 
